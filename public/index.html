@@ -761,8 +761,8 @@
     async function loadData() {
       try {
         const [pipelineRes, boxesRes] = await Promise.all([
-          fetch(`/api/pipeline/${PIPELINE_KEY}`),
-          fetch(`/api/boxes/${PIPELINE_KEY}`)
+          fetch(`/api/pipeline?key=${PIPELINE_KEY}`),
+          fetch(`/api/boxes?key=${PIPELINE_KEY}`)
         ]);
 
         pipeline = await pipelineRes.json();
