@@ -1,0 +1,9 @@
+{
+  "buildCommand": "",
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/api/pipelines", "destination": "/api/pipelines" },
+    { "source": "/api/pipelines/:key", "destination": "/api/pipeline/:key" },
+    { "source": "/api/pipelines/:key/boxes", "destination": "/api/boxes/:key" }
+  ]
+}

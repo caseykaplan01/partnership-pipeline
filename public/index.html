@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fora Reserve and Enhanced Rates Pipeline</title>
+  <style>
+    /* Fora Brand Fonts */
+    @font-face {
+      font-family: 'Blanco';
+      src: url('/fonts/Blanco-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Blanco';
+      src: url('/fonts/Blanco-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Blanco';
+      src: url('/fonts/Blanco-Italic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'ChiswickSansText';
+      src: url('/fonts/ChiswickSansText-Regular-Web.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'ChiswickSansText';
+      src: url('/fonts/ChiswickSansText-Semibold-Web.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    /* Fora Brand Colors */
+    :root {
+      --fora-navy: #131313;
+      --fora-shell: #e5dbd0;
+      --fora-olive: #77742a;
+      --fora-sangria: #870d13;
+      --fora-indigo: #333880;
+      --fora-stone: #827363;
+      --fora-cream: #faf8f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Blanco', Georgia, serif;
+      background: var(--fora-cream);
+      color: var(--fora-navy);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* Header */
+    .header {
+      background: var(--fora-navy);
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .logo-subtitle {
+      font-family: 'Blanco', Georgia, serif;
+      font-size: 0.85rem;
+      color: var(--fora-shell);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .header-right {
+      font-family: 'Blanco', Georgia, serif;
+      color: var(--fora-shell);
+      font-size: 0.85rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px 40px;
+    }
+
+    /* Stats Bar */
+    .stats-section {
+      margin-bottom: 30px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stats-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .stats-label {
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--fora-stone);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid var(--fora-shell);
+      padding: 20px 28px;
+      border-radius: 8px;
+      text-align: center;
+      min-width: 140px;
+      transition: all 0.2s;
+    }
+
+    .stat:hover {
+      border-color: var(--fora-stone);
+    }
+
+    .stat-value {
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--fora-navy);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-size: 0.7rem;
+      color: var(--fora-stone);
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-primary {
+      background: var(--fora-navy);
+      border-color: var(--fora-navy);
+    }
+
+    .stat-primary .stat-value {
+      color: white;
+    }
+
+    .stat-primary .stat-label {
+      color: var(--fora-shell);
+    }
+
+    .stat-stage {
+      min-width: 110px;
+      padding: 14px 18px;
+      position: relative;
+    }
+
+    .stat-stage .stat-value {
+      font-size: 1.6rem;
+    }
+
+    .stat-stage .stat-label {
+      text-transform: none;
+      margin-top: 6px;
+    }
+
+    .stat-stage .stage-badge {
+      font-size: 0.55rem;
+      padding: 3px 8px;
+    }
+
+    .stat-stage-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 8px 8px 0 0;
+    }
+
+    /* Search & Filters */
+    .search-filter {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 280px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--fora-shell);
+      background: white;
+      color: var(--fora-navy);
+      font-family: 'Blanco', Georgia, serif;
+      font-size: 0.95rem;
+    }
+
+    .search-input::placeholder {
+      color: var(--fora-stone);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--fora-indigo);
+      box-shadow: 0 0 0 3px rgba(51, 56, 128, 0.1);
+    }
+
+    .filter-select {
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--fora-shell);
+      background: white;
+      color: var(--fora-navy);
+      font-family: 'Blanco', Georgia, serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      min-width: 200px;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--fora-indigo);
+    }
+
+    .filter-btn {
+      padding: 12px 20px;
+      border-radius: 6px;
+      border: 1px solid var(--fora-shell);
+      background: white;
+      color: var(--fora-stone);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+    }
+
+    .filter-btn:hover {
+      background: var(--fora-cream);
+      border-color: var(--fora-stone);
+    }
+
+    .filter-btn.active {
+      background: var(--fora-navy);
+      color: white;
+      border-color: var(--fora-navy);
+    }
+
+    /* Table */
+    .table-container {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--fora-shell);
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1200px;
+    }
+
+    th {
+      background: var(--fora-navy);
+      padding: 14px 16px;
+      text-align: left;
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--fora-shell);
+      border-bottom: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    th:hover {
+      background: #2a2a2a;
+    }
+
+    th.sorted-asc::after {
+      content: ' ▲';
+      color: var(--fora-olive);
+    }
+
+    th.sorted-desc::after {
+      content: ' ▼';
+      color: var(--fora-olive);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--fora-shell);
+      font-size: 0.9rem;
+      color: var(--fora-navy);
+      vertical-align: top;
+    }
+
+    tr:hover td {
+      background: rgba(229, 219, 208, 0.3);
+    }
+
+    tr {
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .name-cell {
+      font-weight: 600;
+      color: var(--fora-navy);
+      max-width: 250px;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge.fora-reserve {
+      background: var(--fora-indigo);
+      color: white;
+    }
+
+    .badge.enhanced-rates {
+      background: rgba(51, 56, 128, 0.15);
+      color: var(--fora-indigo);
+    }
+
+    .stage-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* Stage colors matching Streak */
+    .stage-badge.stage-in-discussion {
+      background: rgba(135, 13, 19, 0.15);
+      color: var(--fora-sangria);
+    }
+
+    .stage-badge.stage-gds-rate-loading {
+      background: rgba(51, 56, 128, 0.15);
+      color: var(--fora-indigo);
+    }
+
+    .stage-badge.stage-updated-in-portal {
+      background: rgba(119, 116, 42, 0.15);
+      color: var(--fora-olive);
+    }
+
+    .stage-badge.stage-fully-onboarded {
+      background: var(--fora-olive);
+      color: white;
+    }
+
+    .stage-badge.stage-denied {
+      background: var(--fora-sangria);
+      color: white;
+    }
+
+    .stage-badge.stage-reach-out-in-future {
+      background: rgba(130, 115, 99, 0.15);
+      color: var(--fora-stone);
+    }
+
+    .stage-badge.stage-inbox {
+      background: var(--fora-shell);
+      color: var(--fora-navy);
+    }
+
+    .stage-badge.stage-prospects {
+      background: rgba(229, 219, 208, 0.5);
+      color: var(--fora-stone);
+    }
+
+    .perks-cell {
+      max-width: 300px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--fora-stone);
+    }
+
+    .truncate {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    .website-link {
+      color: var(--fora-indigo);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .website-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(19, 19, 19, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: flex-start;
+      z-index: 1000;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 8px;
+      max-width: 700px;
+      width: 100%;
+      margin: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--fora-shell);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background: var(--fora-navy);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .modal-header h2 {
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: white;
+      line-height: 1.3;
+    }
+
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: var(--fora-shell);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-left: 16px;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .detail-section {
+      margin-bottom: 24px;
+    }
+
+    .detail-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .detail-section-title {
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fora-olive);
+      font-weight: 600;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--fora-shell);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .detail-row {
+      margin-bottom: 12px;
+    }
+
+    .detail-row.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .detail-label {
+      font-family: 'ChiswickSansText', -apple-system, sans-serif;
+      color: var(--fora-stone);
+      font-size: 0.75rem;
+      margin-bottom: 4px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .detail-value {
+      font-family: 'Blanco', Georgia, serif;
+      color: var(--fora-navy);
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: var(--fora-stone);
+      font-family: 'Blanco', Georgia, serif;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--fora-shell);
+      border-top-color: var(--fora-indigo);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .refresh-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--fora-navy);
+      color: white;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 12px rgba(19, 19, 19, 0.2);
+      transition: all 0.2s;
+    }
+
+    .refresh-btn:hover {
+      transform: scale(1.05);
+      background: #2a2a2a;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px;
+      color: var(--fora-stone);
+      font-family: 'Blanco', Georgia, serif;
+    }
+
+    /* Perk tags in modal */
+    .perk-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .perk-item::before {
+      content: "✓";
+      color: var(--fora-olive);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-content">
+      <div>
+        <div class="logo">FORA</div>
+        <div class="logo-subtitle">Fora Reserve and Enhanced Rates Pipeline</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="stats-section" id="statsBar">
+      <!-- Stats will be inserted here -->
+    </div>
+
+    <div class="search-filter">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search partners by name, perks, website...">
+      <select class="filter-select" id="stageFilter">
+        <option value="all">All Stages</option>
+        <option value="5011">In Discussion</option>
+        <option value="5014">GDS Rate Loading</option>
+        <option value="5006">Updated in Portal</option>
+        <option value="5008">Fully Onboarded</option>
+        <option value="5001">Inbox (Onboarding Page done)</option>
+        <option value="5010">Denied</option>
+      </select>
+      <button class="filter-btn active" data-filter="all">All Programs</button>
+      <button class="filter-btn" data-filter="Fora Reserve">Fora Reserve</button>
+      <button class="filter-btn" data-filter="Enhanced Rates">Enhanced Rates</button>
+    </div>
+
+    <div class="table-container">
+      <div class="table-scroll">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th data-sort="name">Name</th>
+              <th data-sort="stageName">Stage</th>
+              <th data-sort="partnerProgram">Program</th>
+              <th data-sort="commission">Commission</th>
+              <th data-sort="perks">Perks</th>
+              <th data-sort="website">Website</th>
+              <th data-sort="gdsId">GDS</th>
+              <th data-sort="daysInStage">Days in Stage</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <td colspan="8">
+                <div class="loading">
+                  <div class="spinner"></div>
+                  <p>Loading partners...</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Partner Details</h2>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Details will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <button class="refresh-btn" onclick="refreshData()" title="Refresh data">↻</button>
+
+  <script>
+    // Configuration
+    const PIPELINE_KEY = 'agxzfm1haWxmb29nYWVyNQsSDE9yZ2FuaXphdGlvbiIOZm9yYXRyYXZlbC5jb20MCxIIV29ya2Zsb3cYgID54vvsuAoM';
+    const ASSIGNED_TO_EMAIL = 'casey@foratravel.com';
+
+    // Field keys from Streak API
+    const FIELD_KEYS = {
+      type: '1004',
+      commissionStandard: '1005',
+      perksStandard: '1006',
+      partnerProgram: '1008',
+      commissionReserve: '1009',
+      perksReserve: '1010',
+      commissionPayment: '1011',
+      website: '1012',
+      onGds: '1013',
+      gdsId: '1014'
+    };
+
+    let allBoxes = [];
+    let pipeline = null;
+    let currentFilter = 'all';
+    let currentStageFilter = 'all';
+    let currentSort = { field: 'name', direction: 'asc' };
+
+    // Stage key to CSS class mapping
+    const STAGE_CLASSES = {
+      '5001': 'stage-inbox',
+      '5006': 'stage-updated-in-portal',
+      '5008': 'stage-fully-onboarded',
+      '5010': 'stage-denied',
+      '5011': 'stage-in-discussion',
+      '5012': 'stage-prospects',
+      '5014': 'stage-gds-rate-loading',
+      '5016': 'stage-reach-out-in-future'
+    };
+
+    // Initialize
+    async function init() {
+      await loadData();
+      setupEventListeners();
+    }
+
+    // Load pipeline and boxes
+    async function loadData() {
+      try {
+        const [pipelineRes, boxesRes] = await Promise.all([
+          fetch(`/api/pipelines/${PIPELINE_KEY}`),
+          fetch(`/api/pipelines/${PIPELINE_KEY}/boxes`)
+        ]);
+
+        pipeline = await pipelineRes.json();
+        const boxes = await boxesRes.json();
+
+        // Filter to only Casey's boxes (assigned only, not followers - matches Streak view)
+        // Also exclude Prospects (5012) and Reach out in future (5016) stages
+        const excludedStages = ['5012', '5016'];
+        allBoxes = boxes.filter(box => {
+          const assignedEmails = box.assignedToSharingEntries?.map(e => e.email) || [];
+          const isAssigned = assignedEmails.includes(ASSIGNED_TO_EMAIL);
+          const isValidStage = !excludedStages.includes(box.stageKey);
+          return isAssigned && isValidStage;
+        });
+
+        // Parse box data
+        allBoxes = allBoxes.map(box => parseBox(box));
+
+        updateStats();
+        renderTable();
+      } catch (error) {
+        console.error('Error loading data:', error);
+        document.getElementById('tableBody').innerHTML = `
+          <tr><td colspan="8" class="no-results">Failed to load data. Please refresh.</td></tr>
+        `;
+      }
+    }
+
+    // Parse box into friendly format
+    function parseBox(box) {
+      const fields = box.fields || {};
+      const dropdownValue = (fieldKey) => {
+        const val = fields[fieldKey];
+        if (!val) return '';
+        const fieldDef = pipeline.fields?.find(f => f.key === fieldKey);
+        if (fieldDef?.dropdownSettings?.items) {
+          const item = fieldDef.dropdownSettings.items.find(i => i.key === val);
+          return item ? item.name : val;
+        }
+        return val;
+      };
+
+      const partnerProgram = dropdownValue(FIELD_KEYS.partnerProgram);
+      const isReserve = partnerProgram === 'Fora Reserve';
+
+      return {
+        key: box.boxKey,
+        name: box.name || 'Unnamed',
+        partnerProgram: partnerProgram,
+        type: fields[FIELD_KEYS.type] || '',
+        // Use appropriate fields based on partner program
+        commission: isReserve
+          ? (fields[FIELD_KEYS.commissionReserve] || '')
+          : (fields[FIELD_KEYS.commissionStandard] || ''),
+        commissionReserve: fields[FIELD_KEYS.commissionReserve] || '',
+        commissionStandard: fields[FIELD_KEYS.commissionStandard] || '',
+        perks: isReserve
+          ? (fields[FIELD_KEYS.perksReserve] || '')
+          : (fields[FIELD_KEYS.perksStandard] || ''),
+        perksReserve: fields[FIELD_KEYS.perksReserve] || '',
+        perksStandard: fields[FIELD_KEYS.perksStandard] || '',
+        commissionPayment: fields[FIELD_KEYS.commissionPayment] || '',
+        website: fields[FIELD_KEYS.website] || '',
+        onGds: fields[FIELD_KEYS.onGds] || '',
+        gdsId: fields[FIELD_KEYS.gdsId] || '',
+        daysInStage: calculateDaysInStage(box.lastStageChangeTimestamp),
+        lastUpdated: box.lastUpdatedTimestamp,
+        stageKey: box.stageKey,
+        stageName: pipeline.stages?.[box.stageKey]?.name || ''
+      };
+    }
+
+    // Calculate days in stage
+    function calculateDaysInStage(timestamp) {
+      if (!timestamp) return 0;
+      const now = Date.now();
+      const diff = now - timestamp;
+      return Math.floor(diff / (1000 * 60 * 60 * 24));
+    }
+
+    // Update stats
+    function updateStats() {
+      const total = allBoxes.length;
+      const reserveCount = allBoxes.filter(b => b.partnerProgram === 'Fora Reserve').length;
+      const enhancedCount = allBoxes.filter(b => b.partnerProgram === 'Enhanced Rates').length;
+
+      // Count by stage
+      const stageCounts = {};
+      allBoxes.forEach(box => {
+        const stageName = box.stageName || 'Unknown';
+        stageCounts[stageName] = (stageCounts[stageName] || 0) + 1;
+      });
+
+      // Stage display order, colors, and bar colors (excluding Prospects and Reach out in future)
+      const stageOrder = [
+        { name: 'In Discussion', key: '5011', color: 'stage-in-discussion', barColor: 'var(--fora-sangria)' },
+        { name: 'GDS Rate Loading', key: '5014', color: 'stage-gds-rate-loading', barColor: 'var(--fora-indigo)' },
+        { name: 'Updated in Portal', key: '5006', color: 'stage-updated-in-portal', barColor: 'var(--fora-olive)' },
+        { name: 'Fully Onboarded', key: '5008', color: 'stage-fully-onboarded', barColor: 'var(--fora-olive)' },
+        { name: 'Denied', key: '5010', color: 'stage-denied', barColor: 'var(--fora-sangria)' },
+        { name: 'Inbox (Onboarding Page done)', key: '5001', color: 'stage-inbox', barColor: 'var(--fora-shell)' }
+      ];
+
+      const stageStatsHtml = stageOrder
+        .filter(stage => stageCounts[stage.name] > 0)
+        .map(stage => `
+          <div class="stat stat-stage">
+            <div class="stat-stage-bar" style="background: ${stage.barColor}"></div>
+            <div class="stat-value">${stageCounts[stage.name] || 0}</div>
+            <div class="stat-label">${stage.name}</div>
+          </div>
+        `).join('');
+
+      document.getElementById('statsBar').innerHTML = `
+        <div class="stats-label">Overview</div>
+        <div class="stats-row">
+          <div class="stat stat-primary">
+            <div class="stat-value">${total}</div>
+            <div class="stat-label">Total Partners</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">${reserveCount}</div>
+            <div class="stat-label">Fora Reserve</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">${enhancedCount}</div>
+            <div class="stat-label">Enhanced Rates</div>
+          </div>
+        </div>
+        <div class="stats-label" style="margin-top: 20px;">By Stage</div>
+        <div class="stats-row">
+          ${stageStatsHtml}
+        </div>
+      `;
+    }
+
+    // Render table
+    function renderTable() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+      let filtered = allBoxes.filter(box => {
+        // Filter by stage
+        if (currentStageFilter !== 'all' && box.stageKey !== currentStageFilter) {
+          return false;
+        }
+
+        // Filter by partner program
+        if (currentFilter !== 'all' && box.partnerProgram !== currentFilter) {
+          return false;
+        }
+
+        // Filter by search
+        if (searchTerm) {
+          const searchFields = [
+            box.name,
+            box.partnerProgram,
+            box.stageName,
+            box.perks,
+            box.perksReserve,
+            box.perksStandard,
+            box.website,
+            box.gdsId
+          ].join(' ').toLowerCase();
+          return searchFields.includes(searchTerm);
+        }
+
+        return true;
+      });
+
+      // Sort
+      filtered.sort((a, b) => {
+        let aVal = a[currentSort.field] || '';
+        let bVal = b[currentSort.field] || '';
+
+        if (currentSort.field === 'daysInStage') {
+          aVal = Number(aVal) || 0;
+          bVal = Number(bVal) || 0;
+        } else {
+          aVal = String(aVal).toLowerCase();
+          bVal = String(bVal).toLowerCase();
+        }
+
+        if (aVal < bVal) return currentSort.direction === 'asc' ? -1 : 1;
+        if (aVal > bVal) return currentSort.direction === 'asc' ? 1 : -1;
+        return 0;
+      });
+
+      // Update sort indicators
+      document.querySelectorAll('th').forEach(th => {
+        th.classList.remove('sorted-asc', 'sorted-desc');
+        if (th.dataset.sort === currentSort.field) {
+          th.classList.add(currentSort.direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
+        }
+      });
+
+      if (filtered.length === 0) {
+        document.getElementById('tableBody').innerHTML = `
+          <tr><td colspan="8" class="no-results">No partners found matching your criteria.</td></tr>
+        `;
+        return;
+      }
+
+      document.getElementById('tableBody').innerHTML = filtered.map(box => `
+        <tr onclick="showDetails('${box.key}')">
+          <td class="name-cell">${escapeHtml(box.name)}</td>
+          <td><span class="stage-badge ${STAGE_CLASSES[box.stageKey] || ''}">${escapeHtml(box.stageName) || '-'}</span></td>
+          <td>
+            ${box.partnerProgram ? `
+              <span class="badge ${box.partnerProgram === 'Fora Reserve' ? 'fora-reserve' : 'enhanced-rates'}">
+                ${escapeHtml(box.partnerProgram)}
+              </span>
+            ` : '-'}
+          </td>
+          <td>${escapeHtml(box.commission) || '-'}</td>
+          <td class="perks-cell">${truncateText(box.perks, 100) || '-'}</td>
+          <td>
+            ${box.website ? `
+              <a href="${escapeHtml(box.website)}" target="_blank" class="website-link" onclick="event.stopPropagation()">
+                ${truncateText(box.website.replace(/^https?:\/\//, ''), 30)}
+              </a>
+            ` : '-'}
+          </td>
+          <td>${escapeHtml(box.gdsId) || '-'}</td>
+          <td>${box.daysInStage}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Show details modal
+    function showDetails(boxKey) {
+      const box = allBoxes.find(b => b.key === boxKey);
+      if (!box) return;
+
+      document.getElementById('modalTitle').textContent = box.name;
+
+      const isReserve = box.partnerProgram === 'Fora Reserve';
+
+      document.getElementById('modalBody').innerHTML = `
+        <div class="detail-section">
+          <div class="detail-section-title">Partner Information</div>
+          <div class="detail-grid">
+            <div class="detail-row">
+              <div class="detail-label">Partner Program</div>
+              <div class="detail-value">
+                ${box.partnerProgram ? `<span class="badge ${isReserve ? 'fora-reserve' : 'enhanced-rates'}">${escapeHtml(box.partnerProgram)}</span>` : '-'}
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Type</div>
+              <div class="detail-value">${escapeHtml(box.type) || '-'}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Stage</div>
+              <div class="detail-value"><span class="stage-badge ${STAGE_CLASSES[box.stageKey] || ''}">${escapeHtml(box.stageName) || '-'}</span></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Days in Stage</div>
+              <div class="detail-value">${box.daysInStage}</div>
+            </div>
+            <div class="detail-row full-width">
+              <div class="detail-label">Website</div>
+              <div class="detail-value">${box.website ? `<a href="${escapeHtml(box.website)}" target="_blank" class="website-link">${escapeHtml(box.website)}</a>` : '-'}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">Commission</div>
+          <div class="detail-grid">
+            ${isReserve ? `
+              <div class="detail-row">
+                <div class="detail-label">Reserve Commission</div>
+                <div class="detail-value">${escapeHtml(box.commissionReserve) || '-'}</div>
+              </div>
+            ` : `
+              <div class="detail-row">
+                <div class="detail-label">Standard Commission</div>
+                <div class="detail-value">${escapeHtml(box.commissionStandard) || '-'}</div>
+              </div>
+            `}
+            <div class="detail-row">
+              <div class="detail-label">Payment Method</div>
+              <div class="detail-value">${escapeHtml(box.commissionPayment) || '-'}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">Perks</div>
+          ${isReserve ? `
+            <div class="detail-row">
+              <div class="detail-label">Reserve Perks</div>
+              <div class="detail-value">${formatPerks(box.perksReserve)}</div>
+            </div>
+          ` : `
+            <div class="detail-row">
+              <div class="detail-label">Standard Perks</div>
+              <div class="detail-value">${formatPerks(box.perksStandard)}</div>
+            </div>
+          `}
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">GDS Information</div>
+          <div class="detail-grid">
+            <div class="detail-row">
+              <div class="detail-label">On GDS?</div>
+              <div class="detail-value">${escapeHtml(box.onGds) || '-'}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">GDS ID</div>
+              <div class="detail-value">${escapeHtml(box.gdsId) || '-'}</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    // Format perks with checkmarks
+    function formatPerks(perks) {
+      if (!perks) return '-';
+      // Split by newlines and format as list
+      const lines = perks.split('\n').filter(line => line.trim());
+      if (lines.length === 0) return '-';
+      return lines.map(line => `<div class="perk-item">${escapeHtml(line.trim())}</div>`).join('');
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+      // Search
+      document.getElementById('searchInput').addEventListener('input', () => {
+        renderTable();
+      });
+
+      // Stage filter dropdown
+      document.getElementById('stageFilter').addEventListener('change', (e) => {
+        currentStageFilter = e.target.value;
+        renderTable();
+      });
+
+      // Filter buttons
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          renderTable();
+        });
+      });
+
+      // Sort headers
+      document.querySelectorAll('th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => {
+          const field = th.dataset.sort;
+          if (currentSort.field === field) {
+            currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+          } else {
+            currentSort.field = field;
+            currentSort.direction = 'asc';
+          }
+          renderTable();
+        });
+      });
+
+      // Close modal on overlay click
+      document.getElementById('modalOverlay').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+          closeModal();
+        }
+      });
+
+      // Close modal on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+    }
+
+    // Refresh data
+    function refreshData() {
+      document.getElementById('tableBody').innerHTML = `
+        <tr><td colspan="8">
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Refreshing data...</p>
+          </div>
+        </td></tr>
+      `;
+      loadData();
+    }
+
+    // Helper: Escape HTML
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Helper: Truncate text
+    function truncateText(text, maxLength) {
+      if (!text) return '';
+      if (text.length <= maxLength) return escapeHtml(text);
+      return escapeHtml(text.substring(0, maxLength)) + '...';
+    }
+
+    // Start
+    init();
+  </script>
+</body>
+</html>
