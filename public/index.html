@@ -856,14 +856,12 @@
         stageCounts[stageName] = (stageCounts[stageName] || 0) + 1;
       });
 
-      // Stage display order, colors, and bar colors (excluding Prospects and Reach out in future)
+      // Stage display order, colors, and bar colors
       const stageOrder = [
         { name: 'In Discussion', key: '5011', color: 'stage-in-discussion', barColor: 'var(--fora-sangria)' },
         { name: 'GDS Rate Loading', key: '5014', color: 'stage-gds-rate-loading', barColor: 'var(--fora-indigo)' },
         { name: 'Updated in Portal', key: '5006', color: 'stage-updated-in-portal', barColor: 'var(--fora-olive)' },
-        { name: 'Fully Onboarded', key: '5008', color: 'stage-fully-onboarded', barColor: 'var(--fora-olive)' },
-        { name: 'Denied', key: '5010', color: 'stage-denied', barColor: 'var(--fora-sangria)' },
-        { name: 'Inbox (Onboarding Page done)', key: '5001', color: 'stage-inbox', barColor: 'var(--fora-shell)' }
+        { name: 'Fully Onboarded', key: '5008', color: 'stage-fully-onboarded', barColor: 'var(--fora-olive)' }
       ];
 
       const stageStatsHtml = stageOrder
