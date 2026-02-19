@@ -661,8 +661,6 @@
         <option value="5014">GDS Rate Loading</option>
         <option value="5006">Updated in Portal</option>
         <option value="5008">Fully Onboarded</option>
-        <option value="5001">Inbox (Onboarding Page done)</option>
-        <option value="5010">Denied</option>
       </select>
       <button class="filter-btn active" data-filter="all">All Programs</button>
       <button class="filter-btn" data-filter="Fora Reserve">Fora Reserve</button>
@@ -769,8 +767,8 @@
         const boxes = await boxesRes.json();
 
         // Filter to only Casey's boxes (assigned only, not followers - matches Streak view)
-        // Also exclude Prospects (5012) and Reach out in future (5016) stages
-        const excludedStages = ['5012', '5016'];
+        // Exclude: Prospects (5012), Reach out in future (5016), Denied (5010), Inbox (5001)
+        const excludedStages = ['5012', '5016', '5010', '5001'];
         allBoxes = boxes.filter(box => {
           const assignedEmails = box.assignedToSharingEntries?.map(e => e.email) || [];
           const isAssigned = assignedEmails.includes(ASSIGNED_TO_EMAIL);
